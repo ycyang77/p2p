@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdiv="http://www.hdiv.org/schema/hdiv"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.hdiv.org/schema/hdiv http://www.hdiv.org/schema/hdiv/hdiv.xsd">
+
+	<hdiv:config errorPage="/500.html">
+	    <hdiv:startPages>/.*</hdiv:startPages>
+	</hdiv:config>
+
+	<hdiv:editableValidations registerDefaults="true">
+		<hdiv:validationRule url=".*" enableDefaults="true"></hdiv:validationRule>
+	</hdiv:editableValidations>
+
+</beans>
