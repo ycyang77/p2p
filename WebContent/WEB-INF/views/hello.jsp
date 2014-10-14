@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -7,5 +8,11 @@
 </head>
 <body>
     <p>${name} !你xx好! </p>
+    
+    <spring:url value="string" var="url" />
+    <form action="${url}" method="post">
+    	<input name="name" id="name" />
+    	<input type="submit" value="submit"/>
+    </form>
 </body>
 </html>
