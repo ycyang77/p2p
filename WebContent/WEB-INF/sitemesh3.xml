@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>  
+
+<sitemesh>
+  <mapping path="/*" decorator="/WEB-INF/views/decorator.jsp"/>
+  <mapping path="/*.html" exclue="true"/>
+</sitemesh>

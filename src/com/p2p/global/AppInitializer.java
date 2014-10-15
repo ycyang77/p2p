@@ -5,6 +5,7 @@ import javax.servlet.ServletRegistration;
 
 import org.hdiv.filter.ValidatorFilter;
 import org.hdiv.listener.InitListener;
+import org.sitemesh.config.ConfigurableSiteMeshFilter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -18,6 +19,8 @@ public class AppInitializer implements WebApplicationInitializer
     @Override
     public void onStartup(ServletContext container) 
     {
+    	System.setProperty("file.encoding", "utf-8");
+    	
     	container.setInitParameter("logbackConfigLocation", "/WEB-INF/logback.xml");
         container.setInitParameter("contextConfigLocation", "/WEB-INF/dispatcher-servlet.xml, /WEB-INF/hdiv.xml");
 
@@ -30,7 +33,7 @@ public class AppInitializer implements WebApplicationInitializer
         container.addListener(new LogbackConfigListener());
         container.addListener(new ContextLoaderListener());
         container.addListener(new InitListener());
-        
+
         container.addFilter("loggingFilter", new LoggingFilter()).addMappingForUrlPatterns(null, true, "/*");
 
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
@@ -38,6 +41,8 @@ public class AppInitializer implements WebApplicationInitializer
         characterEncodingFilter.setForceEncoding(true);
         container.addFilter("characterEncodingFilter", characterEncodingFilter).addMappingForUrlPatterns(null, true, "/*");
         
-        container.addFilter("HdivValidatorFilter", new ValidatorFilter()).addMappingForServletNames(null, true, "dispatcher");
+        container.addFilter("hdivValidatorFilter", new ValidatorFilter()).addMappingForServletNames(null, true, "dispatcher");
+        
+        container.addFilter("sitemesh", new ConfigurableSiteMeshFilter()).addMappingForUrlPatterns(null, true, "/*");
     }
 }
