@@ -2,6 +2,7 @@
 <!DOCTYPE configuration>  
  
 <configuration>  
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator" />
     <jmxConfigurator />  
     <!-- 配置文件路径 -->  
     <property name="LogPath" value="E:/※NEW/workspaceN/P2P/log" /> 
@@ -108,5 +109,7 @@
     <logger name="com.p2p.global.LoggingFilter">  
         <appender-ref ref="ACCESS" />  
     </logger>
-         
+    <logger name="org.sitemesh" level="ALL">  
+    </logger>
+
 </configuration> 

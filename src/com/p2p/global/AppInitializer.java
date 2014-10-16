@@ -6,6 +6,7 @@ import javax.servlet.ServletRegistration;
 import org.hdiv.filter.ValidatorFilter;
 import org.hdiv.listener.InitListener;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -21,6 +22,9 @@ public class AppInitializer implements WebApplicationInitializer
     {
     	System.setProperty("file.encoding", "utf-8");
     	
+        SLF4JBridgeHandler.removeHandlersForRootLogger(); 
+        SLF4JBridgeHandler.install();
+        
     	container.setInitParameter("logbackConfigLocation", "/WEB-INF/logback.xml");
         container.setInitParameter("contextConfigLocation", "/WEB-INF/dispatcher-servlet.xml, /WEB-INF/hdiv.xml");
 
